@@ -45,8 +45,15 @@ class ViewController: UIViewController {
         button2.setTitleColor(UIColor.redColor(), forState: .Normal)
         self.view.addSubview(button2)
         
+        var button3 = UIButton()
+        button3.frame = CGRectMake(150, 350, 140, 60)
+        button3.setTitle("Toggle Color", forState: .Normal)
+        button3.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.view.addSubview(button3)
+        
         button.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
         button2.addTarget(self, action: "decrementCount", forControlEvents: UIControlEvents.TouchUpInside)
+        button3.addTarget(self, action: "toggleColor", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     func incrementCount() {
@@ -60,6 +67,17 @@ class ViewController: UIViewController {
         self.count--
         self.label.text = "\(self.count)"
         self.label2.text = "\(self.count)"
+    }
+    
+    func toggleColor() {
+        self.view.backgroundColor = getRandomColor()
+    }
+    
+    func getRandomColor() -> UIColor {
+        var randomRed = CGFloat(drand48())
+        var randomGreen = CGFloat(drand48())
+        var randomBlue = CGFloat(drand48())
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
     }
 }
 
